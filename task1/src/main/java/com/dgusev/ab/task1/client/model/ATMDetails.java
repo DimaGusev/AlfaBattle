@@ -17,4 +17,6 @@ public class ATMDetails {
 
     private Coordinates coordinates;
 
+    private Services services;
+
 }

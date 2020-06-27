@@ -27,4 +27,22 @@ public class AtmService {
         return atms.get(deviceId);
     }
 
+    public ATMDetails findNearest(Double longitude, Double latitude, Boolean payments) {
+        Double distance = Double.MAX_VALUE;
+        ATMDetails atm = null;
+        for (ATMDetails atmDetails: atms.values()) {
+            if (atmDetails.getCoordinates() == null || atmDetails.getCoordinates().getLongitude() == null || atmDetails.getCoordinates().getLatitude() == null) {
+                continue;
+            }
+            Double newDistance = Math.sqrt(Math.pow((longitude - Double.valueOf(atmDetails.getCoordinates().getLongitude())),2) + Math.pow((latitude - Double.valueOf(atmDetails.getCoordinates().getLatitude())),2));
+            if (newDistance < distance) {
+                if (payments == null || !payments || "Y".equals(atmDetails.getServices().getPayments())) {
+                    atm = atmDetails;
+                    distance = newDistance;
+                }
+            }
+        }
+        return atm;
+    }
+
 }
