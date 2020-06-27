@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -36,4 +37,15 @@ public class UserEndpoint {
         }
         return result;
     }
+
+    @GetMapping(value = "/analytic/{userId}/stats")
+    public UserAnalitic getAnalyticsStats(@PathVariable String userId) {
+        throw new UserNotFoundException();
+    }
+
+    @GetMapping(value = "/analytic/{userId}/templates")
+    public UserAnalitic getAnalyticsTemplates(@PathVariable String userId) {
+        throw new UserNotFoundException();
+    }
+
 }
