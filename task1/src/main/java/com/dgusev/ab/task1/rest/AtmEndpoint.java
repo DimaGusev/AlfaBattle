@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 public class AtmEndpoint {
 
@@ -36,5 +39,11 @@ public class AtmEndpoint {
             throw new AtmNotFoundException();
         }
         return converter.convert(atmDetails);
+    }
+
+    @GetMapping(value = "/atms/nearest-with-alfik")
+    public List<AtmResponse> findNearest(@RequestParam Double longitude, @RequestParam Double latitude, @RequestParam Integer alfik) {
+        List<ATMDetails> list = atmService.findNearestWithMoney(longitude, latitude, alfik);
+        return list.stream().map(converter::convert).collect(Collectors.toList());
     }
 }

@@ -19,4 +19,6 @@ public class Task1Config {
 
     private String apiPath;
 
+    private String socketUrl;
+
 }
