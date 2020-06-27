@@ -1,0 +1,7 @@
+server:
+  port: 8080
+task1:
+  certPath: client.jks
+  cert-password: 123456
+  api-path: https://apiws.alfabank.ru/alfabank/alfadevportal
+  client-key: fc0d7d7b-a95a-44d7-bd4c-28259c36fe9b
